@@ -95,7 +95,6 @@ export default class Clamav {
             } else if (line.startsWith('THREADS:')) {
                 threads = line.replace('THREADS: ', '')
             } else if (line.startsWith('QUEUE:')) {
-                console.log(line)
                 queue = Number(line.replace('QUEUE: ', '').split(' ')[0])
             } else if (line.startsWith('MEMSTATS:')) {
                 memstats = line.replace('MEMSTATS: ', '')

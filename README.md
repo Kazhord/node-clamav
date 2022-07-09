@@ -20,11 +20,12 @@ $ npm install @kazhord/node-clamav
 
 ## API
 ```js
-import { Clamav } from 'node-clamav'
+import { Clamav } from '@kazhord/node-clamav'
 [...]
 const clamav = new Clamav({ host: '127.0.0.1', port: 3310 })
 ```
-#### Get ClamAV version
+
+### Get ClamAV version
 ```js
 await clamav.version([timeout=180000])
 /*
@@ -36,7 +37,7 @@ await clamav.version([timeout=180000])
 */
 ```
 
-#### Get ClamAV stats
+### Get ClamAV stats
 ```js
 await clamav.stats([timeout=180000])
 /*
@@ -44,13 +45,13 @@ await clamav.stats([timeout=180000])
   pools: 1,
   state: 'VALID PRIMARY',
   threads: 'live 1  idle 0 max 10 idle-timeout 30',
-  queue: NaN,
+  queue: 0,
   memstats: 'heap N/A mmap N/A used N/A free N/A releasable N/A pools 1 pools_used 1267.845M pools_total 1267.894M'
 }
 */
 ```
 
-#### Update ClamAV
+### Update ClamAV
 ```js
 await clamav.reload([timeout=180000])
 /*
@@ -60,7 +61,7 @@ await clamav.reload([timeout=180000])
 */
 ```
 
-#### Get ClamAV state
+### Get ClamAV state
 ```js
 await clamav.ping([timeout=180000])
 /*
@@ -71,9 +72,9 @@ await clamav.ping([timeout=180000])
 */
 ```
 
-#### Scan `Stream`
+### Scan `Stream`
 ```js
-await clamav.ping(stream, [timeout=180000])
+await clamav.scanner.scanStream(stream, [timeout=180000])
 /*
 {
   isInfected: false,
@@ -84,9 +85,9 @@ await clamav.ping(stream, [timeout=180000])
 */
 ```
 
-#### Scan `Buffer`
+### Scan `Buffer`
 ```js
-await clamav.scanner.scanBuffer(buffer, [timeout=180000])
+await clamav.scanner.scanBuffer(buffer, [chunkSize=64*1024], [timeout=180000])
 /*
 {
   isInfected: false,
